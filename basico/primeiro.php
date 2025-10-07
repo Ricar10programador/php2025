@@ -6,6 +6,9 @@
     <title>Conceitos Básicos PHP</title>
 </head>
 <body>
+    <?php
+       require_once("../estrutura/header.php");
+    ?>
     <h1>
         <?php 
            echo "Olá! Eu sou um script PHP rodando no servidor!"
@@ -23,5 +26,8 @@
         document.write("<p>Este é um script que roda no navegador do usuário.</p>");
         document.write("<p>Data e hora local: " + new Date().toLocaleString() + "</p>");
     </script> 
+    <?php
+       require_once("../estrutura/footer.php");
+    ?>
 </body>
 </html>

@@ -6,6 +6,9 @@
     <title>Recebendo Valores GET</title>
 </head>
 <body>
+    <?php
+       require_once("../estrutura/header.php");
+    ?>
     <h1>Recebendo Valores por GET</h1>
     <p>Envie seu nome e idade pelo formulário abaixo:</p>
     <form action="get.php" method="get">
@@ -25,5 +28,8 @@
                 echo "Idade: " . $idade;
             }
             ?>
+            <?php
+       require_once("../estrutura/footer.php");
+    ?>
 </body>
 </html>

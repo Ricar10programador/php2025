@@ -6,6 +6,9 @@
     <title>Exemplo Tabuada</title>
 </head>
 <body>
+    <?php
+       require_once("../estrutura/header.php");
+    ?>
     <h1>Gerar a tabuada de 0 até 10 de um número</h1>
     <form action="tabuada.php" method="get">
         Número: <input type="number" name="numero" required>
@@ -38,6 +41,9 @@
             $i--;
         }
     }
+    ?>
+    <?php
+       require_once("../estrutura/footer.php");
     ?>
 </body>
 </html>

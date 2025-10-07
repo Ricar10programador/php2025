@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+       require_once("../estrutura/header.php");
+    ?>
     <h1>Operações em PHP</h1>
     <?php 
         echo "<h3>Operações Aritméticas<h3>";
@@ -26,11 +29,10 @@
         echo "<br>";
         echo "<h3>Operações de Atribuição<h3>";
         $x = 10;
-        echo 
-
-
-
+        
         ?>
-
+<?php
+       require_once("../estrutura/footer.php");
+    ?>
 </body>
 </html>

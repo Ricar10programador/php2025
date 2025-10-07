@@ -6,6 +6,9 @@
     <title>Básico Linguagem PHP</title>
 </head>
 <body>
+    <?php
+       include_once("/estrutura/header.php");
+    ?>
     <h1>Conceitos Básicos PHP</h1>
     <ul>
     <li>
@@ -32,6 +35,18 @@
     <li>
     <a href="idade.PHP" target="blank">Exemplo de Idade no PHP </a>
     </li>
+    <li>
+    <a href="tabuada2.PHP" target="blank">Exemplo de Tabuada - Função no PHP </a>
+    </li>
+    <li>
+    <a href="parimpar2.PHP" target="blank">Exemplo de Par ou Ímpar - Função no PHP </a>
+    </li>
+    <li>
+    <a href="dado.PHP" target="blank">Exemplo de Dado no PHP </a>
+    </li>
+    <li>
+    <a href="imc.PHP" target="blank">Calculadora IMC no PHP </a>
+    </li>
     </ul>
     <br>
     <?php
@@ -41,6 +56,8 @@
     echo $_SERVER['SERVER_NAME'];
     echo "<br>";
     ?>
-
+    <?php
+       include_once("/estrutura/footer.php");
+    ?>
 </body>
 </html>

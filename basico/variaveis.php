@@ -6,6 +6,9 @@
     <title>Exemplo Variável em PHP</title>
 </head>
 <body>
+    <?php
+       require_once("../estrutura/header.php");
+    ?>
     <h1>Variáveis em PHP</h1>
     <?php
     echo "<h3>Variável STRING(texto)</h3>";
@@ -25,6 +28,9 @@
     //definindo uma constante
     define("idioma", "Português");
     ?>    
+       <?php
+       require_once("../estrutura/footer.php");
+    ?>
 
 </body>
 </html>
