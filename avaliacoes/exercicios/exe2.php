@@ -1,28 +1,19 @@
 <?php
-// 1. INICIALIZAÇÃO DA SESSÃO
-// Deve ser a primeira linha executável para usar $_SESSION
 session_start();
 
-// Define o total de cadastros necessários
 $total_pessoas = 10;
 $status_mensagem = "";
-
-// 2. PROCESSAMENTO DO FORMULÁRIO (ao enviar)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Garante que o vetor de pessoas na sessão existe
     if (!isset($_SESSION['pessoas'])) {
         $_SESSION['pessoas'] = [];
     }
 
-    // Recebe os dados do formulário
     $nome = trim($_POST['nome'] ?? '');
     $cidade = trim($_POST['cidade'] ?? '');
     $idade = intval($_POST['idade'] ?? 0);
     $sexo = $_POST['sexo'] ?? '';
 
-    // Validação básica
     if (!empty($nome) && !empty($cidade) && $idade > 0 && in_array($sexo, ['Masculino', 'Feminino'])) {
-        // Armazena a nova pessoa no vetor (array) da Sessão
         $_SESSION['pessoas'][] = [
             'nome' => htmlspecialchars($nome),
             'cidade' => htmlspecialchars($cidade),
@@ -40,24 +31,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $status_mensagem = "Erro na entrada. Por favor, preencha todos os campos corretamente.";
     }
 }
-
-// 3. RECUPERAÇÃO E CÁLCULO DOS DADOS
 $dados_pessoas = $_SESSION['pessoas'] ?? [];
 $pessoas_cadastradas = count($dados_pessoas);
 $processamento_finalizado = ($pessoas_cadastradas === $total_pessoas);
-
-// Variáveis para os resultados
 $listagem_maiores_18 = [];
 $contagem_masculino = 0;
 
 if ($processamento_finalizado) {
     foreach ($dados_pessoas as $pessoa) {
-        // 2. Listagem de quem tem mais de 18 anos
         if ($pessoa['idade'] > 18) {
             $listagem_maiores_18[] = $pessoa['nome'];
         }
-
-        // 3. Contagem de pessoas do sexo masculino
         if ($pessoa['sexo'] === 'Masculino') {
             $contagem_masculino++;
         }
@@ -161,11 +145,10 @@ if ($processamento_finalizado) {
 </body>
 </html>
 <?php
-// 6. LIMPEZA DA SESSÃO
 if (isset($_GET['limpar'])) {
-    session_unset();    // Remove todas as variáveis de sessão
-    session_destroy();  // Destrói a sessão
-    header("Location: exe2.php"); // Redireciona para recomeçar
+    session_unset();    
+    session_destroy();  
+    header("Location: exe2.php"); 
     exit;
 }
 ?>

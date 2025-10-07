@@ -1,28 +1,23 @@
 <?php
-// 1. INICIALIZAÇÃO DA SESSÃO
-// A sessão deve ser iniciada antes de qualquer saída HTML!
 session_start();
 
-// Define o número total de alunos que o programa deve receber
 $total_alunos = 10;
 $status_mensagem = "";
 
-// 2. VERIFICAÇÃO E PROCESSAMENTO DO FORMULÁRIO (ao enviar)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Garante que o array de alunos na sessão existe
+   
     if (!isset($_SESSION['alunos'])) {
         $_SESSION['alunos'] = [];
     }
 
-    // Recebe os dados do formulário
+
     $nome = trim($_POST['nome']);
     $nota = floatval($_POST['nota']);
 
-    // Validação básica
     if (!empty($nome) && $nota >= 0 && $nota <= 10) {
-        // Armazena o novo aluno no vetor (array) da Sessão
+     
         $_SESSION['alunos'][] = [
-            'nome' => htmlspecialchars($nome), // Limpa o nome para segurança
+            'nome' => htmlspecialchars($nome), 
             'nota' => $nota
         ];
 
@@ -30,14 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $restantes = $total_alunos - $alunos_atuais;
 
         if ($alunos_atuais < $total_alunos) {
-            $status_mensagem = "Aluno **$alunos_atuais** de **$total_alunos** inserido. Faltam **$restantes**.";
+            $status_mensagem = "Aluno $alunos_atuais de $total_alunos inserido. Faltam $restantes.";
         }
     } else {
         $status_mensagem = "Erro na entrada. Por favor, preencha o nome e uma nota válida (0 a 10).";
     }
 }
 
-// 3. RECUPERAÇÃO E CÁLCULO DOS DADOS DA SESSÃO
 $dados_alunos = $_SESSION['alunos'] ?? [];
 $alunos_inseridos = count($dados_alunos);
 $processamento_finalizado = ($alunos_inseridos === $total_alunos);
@@ -52,14 +46,13 @@ if ($alunos_inseridos > 0) {
     foreach ($dados_alunos as $aluno) {
         $soma_notas += $aluno['nota'];
 
-        // Encontra o aluno com a maior nota
+        // encontra o aluno com a maior nota
         if ($aluno['nota'] > $maior_nota) {
             $maior_nota = $aluno['nota'];
             $aluno_maior_nota = $aluno['nome'];
         }
     }
 
-    // Calcula a média
     $media_classe = $soma_notas / $alunos_inseridos;
 }
 
@@ -108,12 +101,12 @@ if ($alunos_inseridos > 0) {
         <?php else: ?>
             <div class="resultado">
                 <h2>Cálculo Final da Turma</h2>
-                <p>Total de alunos processados: **<?= $alunos_inseridos ?>**</p>
+                <p>Total de alunos processados: <?= $alunos_inseridos ?></p>
                 <hr>
-                <h3>Média de Nota da Classe: **<?= number_format($media_classe, 2, ',', '.') ?>**</h3>
-                <p>Aluno(a) com a **Maior Nota**:</p>
+                <h3>Média de Nota da Classe: <?= number_format($media_classe, 2, ',', '.') ?></h3>
+                <p>Aluno(a) com a Maior Nota:</p>
                 <ul>
-                    <li>**<?= $aluno_maior_nota ?>** (Nota: <?= number_format($maior_nota, 2, ',', '.') ?>)</li>
+                    <li><?= $aluno_maior_nota ?> (Nota: <?= number_format($maior_nota, 2, ',', '.') ?>)</li>
                 </ul>
             </div>
             <a href="?limpar=true" class="limpar-btn">Iniciar Novo Cadastro</a>
@@ -134,11 +127,10 @@ if ($alunos_inseridos > 0) {
 </body>
 </html>
 <?php
-// 6. LIMPEZA DA SESSÃO (para recomeçar)
 if (isset($_GET['limpar'])) {
-    session_unset();    // Remove todas as variáveis de sessão
-    session_destroy();  // Destrói a sessão
-    header("Location: exe1.php"); // Redireciona para recomeçar
+    session_unset();    
+    session_destroy();  
+    header("Location: exe1.php"); 
     exit;
 }
 ?>
