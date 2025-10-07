@@ -24,12 +24,12 @@
             echo "<h2>Dados Recebidos<h2>";
             echo "Nome: " . $nome;
             echo "<br>";
-            echo "Idade: " . $idade . " anos, ";
+            echo "Idade: " . $idade . " Anos, ";
             if ($idade >= 18){
-                echo "maior de idade";
+                echo "Maior de idade";
             }    
             else {
-                echo "menor de idade";
+                echo "Menor de idade";
             }
         }
         ?>
